@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Titulo</title>
+<meta charset="utf-8">
+ <link href="/css/bootstrap.css" rel="stylesheet" th:href="@{css/bootstrap.css}">
+ <link href="/css/paginainicio.css" rel="stylesheet" th:href="@{/css/paginainicio.css}">
+  <script src="/js/alumnos.js" th:href="@{/js/alumnos.js}"></script>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<div class="container">
+  <h2>Dropdowns</h2>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Opciones<span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="index">Inicio</a></li>
+      <li><a href="alumnos_page">Alumnos</a></li>
+      <li><a href="#">Profesor</a></li>
+      <li><a href="#">Administrador</a></li>
+    </ul>
+  </div>
+<div>
+	<a href="pagina1.html">Link a pagina 1</a>
+</div>  
+</div>
+
+<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+
+</body>
+</html>
