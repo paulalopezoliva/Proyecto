@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+ <link href="/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+<link href="/css/bootstrap-table.min.css" rel="stylesheet" th:href="@{/css/bootstrap-table.min.css}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/js/alumnos.js" th:href="@{/js/alumnos.js}"></script>
+<link href="/css/paginainicio.css" rel="stylesheet" th:href="@{/css/paginainicio.css}"/>
+ <title>Pagina de prueba de Alumnos</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<div class="container">
+	<div class="panel panel-default" id="panel-1">
+		<div class="panel-body">
+			<h3>Uso de tabla Alumnos</h3>
+			<p>
+			<div class="bt-group">
+				<button type="button" class="btn btn-primary btn-sm" onclick="javascript:AlumnosController('list')">Listar</button>
+				<button type="button" class="btn btn-primary btn-sm" onclick="javascript:AlumnosController('get')">Buscar</button>
+				<button type="button" class="btn btn-primary btn-sm" onclick="javascript:AlumnosController('insert')">Agregar</button>
+				<button type="button" class="btn btn-primary btn-sm" onclick="javascript:AlumnosController('update')">Modificar</button>
+				<button type="button" class="btn btn-primary btn-sm" onclick="javascript:AlumnosController('delete')">Eliminar</button>
+			</div>
+			<p>
+			<div class="alert alert-danger" id="msg" hidden="true"></div>
+			<div class="input-group">
+				<span class="input-group-addon">RUT</span>
+				<input id="rutalumno" type="text" class="form-control" name="rutalumno" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Digito verificador</span>
+				<input id="rutdigitoalumno" type="text" class="form-control" name="rutdigitoalumno" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Nombre</span>
+				<input id="nombrealumno" type="text" class="form-control" name="nombrealumno" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Apellido paterno</span>
+				<input id="alumnapellidopat" type="text" class="form-control" name="alumnapellidopat" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Apellido materno</span>
+				<input id="alumnapellidomat" type="text" class="form-control" name="alumnapellidomat" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Fecha de Nacimiento</span>
+				<input id="alumnfechanacim" type="text" class="form-control" name="alumnfechanacim" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Direccion</span>
+				<input id="alumndireccion" type="text" class="form-control" name="alumndireccion" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Telefono</span>
+				<input id="alumntelefono" type="text" class="form-control" name="alumntelefono" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">ID curso</span>
+				<input id="id_curso" type="text" class="form-control" name="id_curso" required>
+			</div>
+			<p>
+		</div>
+	</div>
+</div>
+<div id="mymodal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dissmiss="modal">Close</button>
+				<h4 class="modal-title">Lista de alumnos</h4>
+			</div>
+			<div class="modal-body">
+				<div class="table-responsive" style='height:100%' id='tableDivContainer'>
+					<table class="table table-condensed" id="alumnostable" data-toggle="table" data-height="299">
+						<thead><tr>
+						<th data-field="rutalumno">Rut</th>
+						<th data-field="rutdigitoalumno">Digito verificador</th>
+						<th data-field="nombrealumno">Nombre</th>
+						<th data-field="alumnapellidopat">Apellido paterno</th>
+						<th data-field="alumnapellidomat">Apellido materno</th>
+						<th data-field="alumnfechanacim">Fecha de nacimiento</th>
+						<th data-field="alumndireccion">Direccion</th>
+						<th data-field="alumntelefono">Telefono</th>
+						<th data-field="id_curso">Id curso</th>
+					</tr>
+					</thead>	
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+		</div>
+	</div>
+</div>
+<script src="/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+<script src="/js/bootstrap-table.min.js" th:href="@{/js/bootstrap-table.min.js}"></script>
+</body>
+</html>
