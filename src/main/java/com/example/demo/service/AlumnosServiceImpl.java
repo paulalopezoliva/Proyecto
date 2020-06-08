@@ -5,30 +5,39 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.dao.AlumnosDAO;
 import com.example.demo.model.dto.AlumnosDTO;
-import com.example.demo.repository.AlumnosRepository;
 
 @Service
 public class AlumnosServiceImpl implements AlumnosService {
 	
 	@Autowired
-	AlumnosRepository alumnosrepository;
+	private AlumnosDAO alumnosdao;
 
-	public List<AlumnosDTO> findAll() {
-		return alumnosrepository.findAll();
+	public List<AlumnosDTO> listar() {
+		return alumnosdao.lista();
 	}
 	
-	public AlumnosDTO getOne(Integer rutalumno) {
-		return alumnosrepository.getOne(rutalumno);
+	public int update(AlumnosDTO e) {
+		return alumnosdao.update(e);
 		
 	}
-	public void delete(AlumnosDTO alumnosdto) {
-		alumnosrepository.delete(alumnosdto);
-
-	}
 	
-	public AlumnosDTO save(AlumnosDTO alumnosdto) {
-		return alumnosrepository.save(alumnosdto);
+	@Override
+	public int insert(AlumnosDTO e) {
+		return alumnosdao.insert(e);
+		
+	}
+
+	@Override
+	public AlumnosDTO getOne(Integer rutalumno) {
+		return alumnosdao.getOne(rutalumno);
+	}
+
+	
+	public int delete(Integer rutalumno) {
+		return alumnosdao.delete(rutalumno);
+
 	}
 
 }

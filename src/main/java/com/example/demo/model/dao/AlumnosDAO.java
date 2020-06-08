@@ -1,18 +1,23 @@
 package com.example.demo.model.dao;
 
-import java.util.Date;
 import java.util.List;
+/*import java.text.SimpleDateFormat;
+import java.text.ParseException;*/
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dto.AlumnosDTO;
 
+
+@Service
 public class AlumnosDAO implements AlumnosInterface {
 
-	public String insert="INSERT INTO TABLA_ALUMNO VALUES RUTALUMNO=?, RUTDIGITOALUMNO=?, NOMBREALUMNO=?, ALUMNAPELLIDOPAT=?, ALUMNAPELLIDOMAT=?, ALUMNFECHANACIM=?, ALUMNDIRECCION=?, ALUMNTELEFONO=?, ID_CURSO=?";
-	public String update="UPDATE TABLA_ALUMNO SET RUTALUMNO=?, RUTDIGITOALUMNO=?, NOMBREALUMNO=?, ALUMNAPELLIDOPAT=?, ALUMNAPELLIDOMAT=?, ALUMNFECHANACIM=?, ALUMNDIRECCION=?, ALUMNTELEFONO=?, ID_CURSO=?";
+	public String insert="INSERT INTO TABLA_ALUMNO VALUES(?,?,?,?,?,?,?,?,?)";
+	public String update="UPDATE TABLA_ALUMNO SET RUTALUMNO=?, RUTDIGITOALUMNO=?, NOMBREALUMNO=?, ALUMNAPELLIDOPAT=?, ALUMNAPELLIDOMAT=?, ALUMNFECHANACIM=?, ALUMNDIRECCION=?, ALUMNTELEFONO=?, ID_CURSO=? WHERE RUTALUMNO=?";
 	public String delete="DELETE FROM TABLA_ALUMNO WHERE RUTALUMNO=?";
 	public String get_one="SELECT * FROM TABLA_ALUMNO WHERE RUTALUMNO=?";
 	public String get_all="SELECT * FROM TABLA_ALUMNO";
@@ -29,27 +34,87 @@ public class AlumnosDAO implements AlumnosInterface {
 	}
 
 	@Override
-	public void insert(Integer rutalumno) {
-		// TODO Auto-generated method stub
-
+	public int update(AlumnosDTO e) {
+		int rows = 0;
+		Object[] args= {
+				e.getRutalumno(),
+				e.getRutdigitoalumno(),
+				e.getNombrealumno(),
+				e.getAlumnapellidopat(),
+				e.getAlumnapellidomat(),
+				e.getAlumnfechanacim(),
+				e.getAlumndireccion(),
+				e.getAlumntelefono(),
+				e.getId_curso(),
+				e.getRutalumno()
+		};
+		try {
+			rows=jdbctemplate.update(update,args);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return rows;
 	}
 
 	@Override
-	public void insert(AlumnosDTO e) {
-		// TODO Auto-generated method stub
-
+	public int insert(AlumnosDTO e) {
+		AlumnosDTO alumno;
+		/*SimpleDateFormat formato= new SimpleDateFormat("dd/mm/yy");
+		Date fecha=null;*/
+		int rows =0;
+		Object[] args = {
+				e.getRutalumno(),
+				e.getRutdigitoalumno(),
+				e.getNombrealumno(),
+				e.getAlumnapellidopat(),
+				e.getAlumnapellidomat(),
+				e.getAlumnfechanacim(),
+				e.getAlumndireccion(),
+				e.getAlumntelefono(),
+				e.getId_curso()
+		};
+		try {
+		rows=jdbctemplate.update(insert,args); 
+		}
+		catch (Exception ex) {
+	    	ex.printStackTrace();
+	    }
+		return rows;
 	}
+	
+	@Override
+	public AlumnosDTO getOne(Integer rutalumno) {
+		Object[] args = {rutalumno};
+		AlumnosDTO alumnosdto;
+		try {
+			alumnosdto=jdbctemplate.queryForObject(get_one,args ,BeanPropertyRowMapper.newInstance(AlumnosDTO.class));
+		}
+		catch(EmptyResultDataAccessException e) {
+	    	alumnosdto=null;
+	    	e.printStackTrace();
+	    } catch (Exception e) {
+	    	alumnosdto=null;
+	    	e.printStackTrace();
+	    }
+		
+		return alumnosdto;
+		}
+		
 
 	@Override
-	public void update(AlumnosDTO e) {
-		// TODO Auto-generated method stub
+	public int delete(Integer rutalumno) {
+		int rows=0;
+		Object[] args= {rutalumno};
+		try {
+			rows=jdbctemplate.update(delete,args);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return rows;
 
 	}
 
-	@Override
-	public void delete(Integer rutalumno) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

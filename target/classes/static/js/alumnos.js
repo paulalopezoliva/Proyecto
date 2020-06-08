@@ -1,13 +1,13 @@
 function AlumnosController(option){
 	$("#msg").hide();
 	$("#msg").removeClass("alert-success").addClass("alert-danger");
-	var token = $("meta[name='_csrf']").attr("content");
+	//var token = $("meta[name='_csrf']").attr("content");
 	
 	switch(option){
 	case "list":
 		$.ajax({
 			type : "post",
-		    headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
+		    //headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
 			url : "/alumnos/list",
 			success : function(res) {
 				$('#alumnostable').bootstrapTable('load', res);
@@ -34,7 +34,7 @@ function AlumnosController(option){
 	case "get":
 		$.ajax({
 			type : "post",
-		    headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
+		    //headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
 			url : "/alumnos/get",
 			data : "rutalumno="+$("#rutalumno").val(),
 			success : function(res) {
@@ -55,21 +55,49 @@ function AlumnosController(option){
 			},
 			error : function() {
 				$("#msg").show();
-				$("#msg").html("Error en busqueda.");
+				$("#msg").html("error al buscar alumno");
 			}
 		});       			
 		break;
 	case "insert":
-		$("#rutalumno").val(0),
-		$("#rutdigitoalumno").val(""),
-		$("#nombrealumno").val(""),
-		$("#alumnapellidopat").val(""),
-		$("#alumnapellidomat").val(""),
-		$("#alumnfechanacim").val(new Date()),
-		$("#alumndireccion").val(""),
-		$("#alumntelefono").val(0),
-		$("#id_curso").val(0)	
+		var alumnojson = 
+				{
+					'rutalumno':$("#rutalumno").val(),
+					'rutdigitoalumno':$("#rutdigitoalumno").val(),
+					'nombrealumno':$("#nombrealumno").val(),
+					'alumnapellidopat':$("#alumnapellidopat").val(),
+					'alumnapellidomat':$("#alumnapellidomat").val(),
+					'alumnfechanacim':$("#alumnfechanacim").val(),
+					'alumndireccion':$("#alumndireccion").val(),
+					'alumntelefono':$("#alumntelefono").val(),
+					'id_curso':$("#id_curso").val()
+				}
+		var postData = JSON.stringify(alumnojson);
+		
+		 $.ajax({
+			type : "post",
+			//headers: {"X-CSRF-TOKEN": token},
+			url : "/alumnos/insert",
+			data : postData,
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			success : function(res) {
+				if (res == 1) {
+					$("#msg").removeClass("alert-danger").addClass("alert-success");
+					$("#msg").show();
+					$("#msg").html("Alumno ingresado correctamente.");
+				} else {
+					$("#msg").show();
+					$("#msg").html("Alumno no se pudo ingresar.");
+				}
+			},
+			error : function() {
+				$("#msg").show();
+				$("#msg").html("Error");
+			}
+		});       	
 	    break;
+	    
 	case "update":
 		var json = 
 			{
@@ -88,7 +116,7 @@ function AlumnosController(option){
 
 		$.ajax({
 			type : "post",
-		    headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
+		    //headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
 			url : "/alumnos/update",
 			data : postData,
 			contentType : "application/json; charset=utf-8",
@@ -112,7 +140,7 @@ function AlumnosController(option){
 	case "delete":
 		$.ajax({
 			type : "post",
-		    headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
+		    //headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
 			url : "/alumnos/delete",
 			data : "rutalumno="+$("#rutalumno").val(),
 			success : function(res) {

@@ -9,11 +9,11 @@ public interface AlumnosInterface {
 
 	List<AlumnosDTO> lista();
 	
-	void insert(Integer rutalumno);
+	int update(AlumnosDTO e);
 	
-	void insert(AlumnosDTO e);
+	int insert(AlumnosDTO e);
 	
-	void update(AlumnosDTO e);
+	AlumnosDTO getOne(Integer rutalumno);
 	
-	void delete(Integer rutalumno);
+	int delete(Integer rutalumno);
 }

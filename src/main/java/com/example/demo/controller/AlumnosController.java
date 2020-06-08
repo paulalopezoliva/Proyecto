@@ -27,52 +27,53 @@ public class AlumnosController {
 	
 	@RequestMapping(value="/list")
 	public @ResponseBody List<AlumnosDTO> ajaxList(HttpServletRequest req, HttpServletResponse res){
-		List<AlumnosDTO> list = alumnosservice.findAll();
+		List<AlumnosDTO> list = alumnosservice.listar();
 
 		return list;
 	}
+	@RequestMapping(value="/update")
+	public @ResponseBody int ajaxInsert(HttpServletRequest req, HttpServletResponse res) {
+		int rows= 0;
+			try {
+				String RequestData = req.getReader().lines().collect(Collectors.joining());
+				Gson gson = new GsonBuilder().setDateFormat("dd-mm-yy").create();
+				AlumnosDTO alumnos = gson.fromJson(RequestData, AlumnosDTO.class);
+				rows=alumnosservice.update(alumnos);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		return rows;
+	}
+	@RequestMapping(value="/insert")
+	public @ResponseBody int ajaxDelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		int rows=0;
+		try {
+		String RequestData =req.getReader().lines().collect(Collectors.joining());
+		Gson gson = new GsonBuilder().setDateFormat("dd-mm-yy").create();
+		AlumnosDTO alumnos = gson.fromJson(RequestData, AlumnosDTO.class);
+		//alumnos.setRutalumno(req);
+		alumnosservice.insert(alumnos);
+		if(alumnos!=null) {
+			rows=1;
+		}
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		return rows;
+	}
+
 	@RequestMapping(value="/get")
 	public @ResponseBody AlumnosDTO ajaxGet(HttpServletRequest req, HttpServletResponse res) {
 		AlumnosDTO alumnos =alumnosservice.getOne(Integer.parseInt(req.getParameter("rutalumno")));
 		return alumnos;
 	}
-	@RequestMapping(value="/insert")
-	public @ResponseBody int ajaxDelete(HttpServletRequest req, HttpServletResponse res) {
-		AlumnosDTO alumnos =alumnosservice.getOne(Integer.parseInt(req.getParameter("rutalumno")));
-		alumnosservice.delete(alumnos);
-		return 0;
-	}
-	@RequestMapping(value="/update")
-	public @ResponseBody int ajaxInsert(HttpServletRequest req, HttpServletResponse res) {
-		int rows= 0;
-		try {
-			String RequestData = req.getReader().lines().collect(Collectors.joining());
-			Gson gson = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
-			AlumnosDTO alumnos = gson.fromJson(RequestData, AlumnosDTO.class);
-			alumnos=alumnosservice.save(alumnos);
-			if(alumnos==null) {
-				rows=0;
-			}
-		 }
-			catch(IOException e) {
-				e.printStackTrace();
-			}
-		return rows;
-	}
+
+
 	@RequestMapping(value="/delete")
 	public @ResponseBody int ajaxUpdate(HttpServletRequest req, HttpServletResponse res) {
-		int rows=0;
-		try {
-			String requestData= req.getReader().lines().collect(Collectors.joining());
-			Gson gson=new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
-			AlumnosDTO alumnos=gson.fromJson(requestData, AlumnosDTO.class);
-			alumnos=alumnosservice.save(alumnos);
-			if(alumnos !=null) {
-				rows=1;
-			}
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
+		int rows=alumnosservice.delete(Integer.parseInt(req.getParameter("rutalumno")));
 		return rows;
 	}
 

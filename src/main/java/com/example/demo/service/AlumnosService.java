@@ -5,10 +5,12 @@ import com.example.demo.model.dto.AlumnosDTO;
 
 
 public interface AlumnosService {
-	public List<AlumnosDTO> findAll();
+	public List<AlumnosDTO> listar();
+	public int insert(AlumnosDTO alumnosdto);
 	public AlumnosDTO getOne(Integer rutalumno);
-	public AlumnosDTO save(AlumnosDTO alumnosdto);
-	public void delete(AlumnosDTO alumnosdto);
+	public int update(AlumnosDTO alumnosdto);
+	public int delete(Integer rutalumno);
+	
 	
 
 }
