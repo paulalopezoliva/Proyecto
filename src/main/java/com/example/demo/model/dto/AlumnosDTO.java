@@ -2,32 +2,13 @@ package com.example.demo.model.dto;
 
 import java.sql.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
-import javax.persistence.Id;
-
-
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@Entity
-@Table(name="TABLA_ALUMNO")
-@EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class AlumnosDTO {
 
-	@Id
 	private Integer rutalumno;
 	
 	private String rutdigitoalumno;
-	@Size(min=3,max=30)
 	private String nombrealumno;
-	@Size(min=3,max=30)
 	private String alumnapellidopat;
-	@Size(min=3,max=30)
 	private String alumnapellidomat;
 	private Date alumnfechanacim;
 	private String alumndireccion;

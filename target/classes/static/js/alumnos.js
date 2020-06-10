@@ -1,13 +1,13 @@
 function AlumnosController(option){
 	$("#msg").hide();
 	$("#msg").removeClass("alert-success").addClass("alert-danger");
-	//var token = $("meta[name='_csrf']").attr("content");
+	var token = $("meta[name='_csrf']").attr("content");
 	
 	switch(option){
 	case "list":
 		$.ajax({
 			type : "post",
-		    //headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
+		    headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
 			url : "/alumnos/list",
 			success : function(res) {
 				$('#alumnostable').bootstrapTable('load', res);
@@ -34,7 +34,7 @@ function AlumnosController(option){
 	case "get":
 		$.ajax({
 			type : "post",
-		    //headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
+		    headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
 			url : "/alumnos/get",
 			data : "rutalumno="+$("#rutalumno").val(),
 			success : function(res) {
@@ -76,7 +76,7 @@ function AlumnosController(option){
 		
 		 $.ajax({
 			type : "post",
-			//headers: {"X-CSRF-TOKEN": token},
+			headers: {"X-CSRF-TOKEN": token},
 			url : "/alumnos/insert",
 			data : postData,
 			contentType : "application/json; charset=utf-8",
@@ -116,7 +116,7 @@ function AlumnosController(option){
 
 		$.ajax({
 			type : "post",
-		    //headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
+		    headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
 			url : "/alumnos/update",
 			data : postData,
 			contentType : "application/json; charset=utf-8",
@@ -140,7 +140,7 @@ function AlumnosController(option){
 	case "delete":
 		$.ajax({
 			type : "post",
-		    //headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
+		    headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
 			url : "/alumnos/delete",
 			data : "rutalumno="+$("#rutalumno").val(),
 			success : function(res) {

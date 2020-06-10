@@ -18,4 +18,10 @@ public class WebAppController{
 	public String getAlumnos() {
 		return "alumnos";
 	}
+	
+	@RequestMapping("/login")	
+	public String getLoginapoderados() {
+		return "login";
+	
+	}
 }

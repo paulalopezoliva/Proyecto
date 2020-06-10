@@ -59,7 +59,6 @@ public class AlumnosDAO implements AlumnosInterface {
 
 	@Override
 	public int insert(AlumnosDTO e) {
-		AlumnosDTO alumno;
 		/*SimpleDateFormat formato= new SimpleDateFormat("dd/mm/yy");
 		Date fecha=null;*/
 		int rows =0;
