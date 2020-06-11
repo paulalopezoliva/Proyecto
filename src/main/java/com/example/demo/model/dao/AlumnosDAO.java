@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.dto.AlumnosDTO;
 
-
-@Service
+@Repository
+@Transactional
 public class AlumnosDAO implements AlumnosInterface {
 
 	public String insert="INSERT INTO TABLA_ALUMNO VALUES(?,?,?,?,?,?,?,?,?)";

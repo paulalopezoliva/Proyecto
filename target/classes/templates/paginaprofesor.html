@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+ <link href="/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+<link href="/css/bootstrap-table.min.css" rel="stylesheet" th:href="@{/css/bootstrap-table.min.css}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/js/profesor.js" th:href="@{/js/profesor.js}"></script>
+
+<title>Navegación profesor</title>
+</head>
+<body>
+	<div>
+		<div th:replace="fragments/header :: header">&nbsp;</div>
+	</div>
+	<p>
+	<script>$("#contenedor").hide();</script>
+	<button type="button" class="btn btn-primary btn-sm" onclick="javascript:mostraralumnos()">Visualizar</button>
+	<div id="contenedor"> 
+		<div class="table-responsive" style='height:80%' id='tableContainer'>
+					<table class="table table-condensed" id="alumnostable" data-toggle="table" data-height="299">
+						<thead><tr>
+						<th data-field="nombrealumno">Nombre</th>
+						<th data-field="alumnapellidopat">Apellido paterno</th>
+						<th data-field="alumnapellidomat">Apellido materno</th>
+					</tr>
+					</thead>	
+					</table>
+		</div>
+	</div>
+	<div class="bt-group">
+		
+		<p>
+					<div class="input-group">
+						<span class="input-group-addon">Rut profesor</span>
+						<input id="rutprofesor" type="text" class="form-control" name="rutprofesor" required>
+					</div>
+			<p>
+			<script>function mostrar()</script>
+		<button type="button" class="btn btn-primary btn-sm" onclick="javascript:mostrar()">Buscar por rut</button>
+	</div>
+	<p>
+	<select id="tabla">
+		<option>Opciones</option>
+	</select>
+	<p>
+	<p>
+	<p>
+	<p>
+	<div id="formulario" style='height:80%>
+			<div class="input-group">
+				<span class="input-group-addon">RUT</span>
+				<input id="rutalumno" type="text" class="form-control" name="rutprofesor" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Digito verificador</span>
+				<input id="digitoverif" type="text" class="form-control" name="digitoverif" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Nombre</span>
+				<input id="profenombre" type="text" class="form-control" name="profenombre" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Apellido paterno</span>
+				<input id="profeapellidopat" type="text" class="form-control" name="profeapellidopat" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Apellido materno</span>
+				<input id="profeapellidomat" type="text" class="form-control" name="profeapellidomat" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Fecha de Nacimiento</span>
+				<input id="profefechanac" type="text" class="form-control" name="profefechanac" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Direccion</span>
+				<input id="profedireccion" type="text" class="form-control" name="profedireccion" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">Telefono</span>
+				<input id="profetelefono" type="text" class="form-control" name="profetelefono" required>
+			</div>
+			<p>
+			<div class="input-group">
+				<span class="input-group-addon">ID curso</span>
+				<input id="profemail" type="text" class="form-control" name="profemail" required>
+			</div>
+			<p>	
+			<div class="input-group">
+				<span class="input-group-addon">ID curso</span>
+				<input id="idasignatura" type="text" class="form-control" name="idasignatura" required>
+			</div>
+			<p>	
+			<div class="input-group">
+				<span class="input-group-addon">ID curso</span>
+				<input id="nivelprofe" type="text" class="form-control" name="nivelprofe" required>
+			</div>
+			<p>	
+			<div class="input-group">
+				<span class="input-group-addon">ID curso</span>
+				<input id="curnivel" type="text" class="form-control" name="curnivel" required>
+			</div>
+			<p>	
+			<div class="input-group">
+				<span class="input-group-addon">ID curso</span>
+				<input id="curletra" type="text" class="form-control" name="curletra" required>
+			</div>
+			<p>	
+	</div>
+<script src="/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+<script src="/js/bootstrap-table.min.js" th:href="@{/js/bootstrap-table.min.js}"></script>	
+</body>
+</html>

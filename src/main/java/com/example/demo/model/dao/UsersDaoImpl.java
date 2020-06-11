@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
-
-import com.example.demo.DemoApplication;
-import com.example.demo.model.dto.AlumnosDTO;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.model.dto.UsersDTO;
-@Service
+@Repository
+@Transactional
 public class UsersDaoImpl implements UsersDAO {
 	
 	private String insert="INSERT INTO USERS VALUES(?,?,?,?)";
@@ -31,11 +30,11 @@ public class UsersDaoImpl implements UsersDAO {
 	JdbcTemplate jdbctemplate;
 	@Override
 	public UsersDTO getusuario(String username) {
+		Object[] args = {username};
 		UsersDTO usersdto;
-		Object[] args= {"username"};
 		try {
-			usersdto=jdbctemplate.queryForObject(get_one,args,BeanPropertyRowMapper.newInstance(UsersDTO.class));
-			}
+			usersdto=jdbctemplate.queryForObject(get_one,args ,BeanPropertyRowMapper.newInstance(UsersDTO.class));
+		}
 		catch(EmptyResultDataAccessException e) {
 	    	usersdto=null;
 	    	e.printStackTrace();
@@ -44,8 +43,7 @@ public class UsersDaoImpl implements UsersDAO {
 	    	e.printStackTrace();
 	    }
 		return usersdto;
-	}
-
+		}
 	@Override
 	public int updateusuario(UsersDTO user) {
 		// TODO Auto-generated method stub

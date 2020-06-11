@@ -22,6 +22,9 @@ public class WebAppController{
 	@RequestMapping("/login")	
 	public String getLoginapoderados() {
 		return "login";
-	
+	}
+	@RequestMapping("/paginaprofesor")
+	public String getPaginaapoderados() {
+		return "paginaprofesor";
 	}
 }
